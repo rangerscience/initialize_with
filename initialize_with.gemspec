@@ -6,11 +6,11 @@ require "initialize_with/version"
 Gem::Specification.new do |spec|
   spec.name          = "initialize_with"
   spec.version       = InitializeWith::VERSION
-  spec.authors       = ["Nicholas Barone"]
-  spec.email         = ["nicktbarone@gmail.com"]
+  spec.authors       = [ "Nicholas Barone" ]
+  spec.email         = [ "nicktbarone@gmail.com" ]
 
-  spec.summary       = %q{Sugar to skip the usual @param = param boilerplate in Ruby}
-  spec.description   = %q{Adds some utility class methods to simplify some common Ruby patterns}
+  spec.summary       = %q(Sugar to skip the usual @param = param boilerplate in Ruby)
+  spec.description   = %q(Adds some utility class methods to simplify some common Ruby patterns)
   spec.homepage      = "https://github.com/rangerscience/initialize_with"
   spec.license       = "MIT"
 
@@ -21,7 +21,7 @@ Gem::Specification.new do |spec|
   end
   spec.bindir        = "exe"
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
-  spec.require_paths = ["lib"]
+  spec.require_paths = [ "lib" ]
 
   spec.required_ruby_version = '>= 3.0.0'
 
