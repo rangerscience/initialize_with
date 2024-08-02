@@ -1,4 +1,5 @@
 require "bundler/setup"
+require 'debug'
 require "initialize_with"
 
 RSpec.configure do |config|
