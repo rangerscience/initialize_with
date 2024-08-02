@@ -1,4 +1,4 @@
-RSpec.describe InitializeWith do
+RSpec.describe 'InitializeWith::initialize' do
   it "has a version number" do
     expect(InitializeWith::VERSION).not_to be nil
   end
