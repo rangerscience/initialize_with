@@ -3,15 +3,22 @@ require "initialize_with/version"
 module InitializeWith
   def self.included(base)
     base.extend ClassMethods
-    base.prepend Initializer
   end
 
-  module Initializer
-    def initialize(...)
-      self.class._validate_initialization_parameters!(...)
-      self.class._apply_initialization_parameters(self, ...)
-      self.class.instance_variable_get(:@_initialize_with_blocks)&.each { |blk| self.instance_exec(&blk) }
-    end
+  def initialize(...)
+    _initialize_with(...)
+  end
+
+  def parent_initialize_with(...)
+    self.class.superclass._validate_initialization_parameters!(...)
+    self.class.superclass._apply_initialization_parameters(self, ...)
+    self.class.superclass.instance_variable_get(:@_initialize_with_blocks)&.each { |blk| self.instance_exec(&blk) }
+  end
+
+  def _initialize_with(...)
+    self.class._validate_initialization_parameters!(...)
+    self.class._apply_initialization_parameters(self, ...)
+    self.class.instance_variable_get(:@_initialize_with_blocks)&.each { |blk| self.instance_exec(&blk) }
   end
 
   module ClassMethods
@@ -45,7 +52,7 @@ module InitializeWith
       # [      4, 5] =>
       # [1, 2, 3, 5]
       names = @_initialize_with + @_initialize_with_optional.keys
-      values = args + @_initialize_with_optional.values.drop(args.size - @_initialize_with.size) 
+      values = args + @_initialize_with_optional.values.drop(args.size - @_initialize_with.size)
 
       names.zip(values).each do |name, val|
         instance.instance_variable_set("@#{name}", val)
