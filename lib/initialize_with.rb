@@ -1,13 +1,17 @@
 require "initialize_with/version"
 
 module InitializeWith
-  def initialize *args
-    self.class._validate_initialization_parameters! *args
-    self.class._apply_initialization_parameters self, *args
-  end
-
   def self.included(base)
     base.extend ClassMethods
+    base.prepend Initializer
+  end
+
+  module Initializer
+    def initialize(...)
+      super()
+      self.class._validate_initialization_parameters!(...)
+      self.class._apply_initialization_parameters(self, ...)
+    end
   end
 
   module ClassMethods
@@ -25,6 +29,9 @@ module InitializeWith
     end
 
     def _validate_initialization_parameters! *args
+      @_initialize_with ||= []
+      @_initialize_with_optional ||= {}
+
       max_args = @_initialize_with.size + @_initialize_with_optional.size
       raise ArgumentError, "wrong number of arguments (given #{args.size}, expected #{@_initialize_with.size})" unless args.size >= @_initialize_with.size
       raise ArgumentError, "wrong number of arguments (given #{args.size}, expected #{@_initialize_with.size..(max_args)})" if @_initialize_with_splat.nil? && args.size > max_args

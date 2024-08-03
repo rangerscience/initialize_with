@@ -35,4 +35,16 @@ RSpec.describe 'InitializeWith::initialize' do
       expect { klass.new(1, 2, 3, 4) }.to raise_error ArgumentError
     end
   end
+
+  context 'when it is unused' do
+    let(:klass) do
+      Class.new do
+        include InitializeWith
+      end
+    end
+
+    it "does not raise an error" do
+      expect { klass.new }.not_to raise_error
+    end
+  end
 end
