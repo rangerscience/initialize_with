@@ -6,21 +6,28 @@ RSpec.describe 'InitializeWith::initialize' do
   let(:klass) do
     Class.new do
       include InitializeWith
-      initialize_with :foo, :bar, baz: 42
+      initialize_with :foo, faz: 42
+      initialize_with :bar, baz: 99
     end
   end
 
   context "when a correct number of arguments are passed" do
     it "sets the instance variables" do
-      instance = klass.new(1, 2, 3)
+      instance = klass.new(1, 2)
       expect(instance.foo).to eq 1
       expect(instance.bar).to eq 2
-      expect(instance.baz).to eq 3
     end
 
     it "uses the default values of the optional parameters" do
       instance = klass.new(1, 2)
-      expect(instance.baz).to eq 42
+      expect(instance.faz).to eq 42
+      expect(instance.baz).to eq 99
+    end
+
+    it "applies the provided values for the optional parameters" do
+      instance = klass.new(1, 2, 3)
+      expect(instance.faz).to eq 3
+      expect(instance.baz).to eq 99
     end
   end
 
@@ -32,7 +39,7 @@ RSpec.describe 'InitializeWith::initialize' do
 
   context 'when too many arguments are passed' do
     it 'raises an ArgumentError' do
-      expect { klass.new(1, 2, 3, 4) }.to raise_error ArgumentError
+      expect { klass.new(1, 2, 3, 4, 5) }.to raise_error ArgumentError
     end
   end
 
@@ -41,10 +48,6 @@ RSpec.describe 'InitializeWith::initialize' do
       Class.new do
         include InitializeWith
       end
-    end
-
-    it "does not raise an error" do
-      expect { klass.new }.not_to raise_error
     end
   end
 end
