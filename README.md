@@ -1,6 +1,7 @@
 # InitializeWith
 
 ![ci](https://github.com/rangerscience/initialize_with/actions/workflows/ci.yml/badge.svg)
+[![code-climate](https://codeclimate.com/github/rangerscience/initialize_with.svg)](https://codeclimate.com/github/rangerscience/initialize_with)
 
 Utility gem to ease Ruby code development by replacing the common boiler plate:
 
