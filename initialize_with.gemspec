@@ -29,4 +29,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake", "~> 13.2"
   spec.add_development_dependency "rspec", "~> 3.13"
   spec.add_development_dependency "debug", "~> 1.6"
+  spec.add_development_dependency "rubocop", "~> 1.6"
+  spec.add_development_dependency "rubocop-rails-omakase", "~> 1.0"
 end

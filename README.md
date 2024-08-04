@@ -1,5 +1,7 @@
 # InitializeWith
 
+![ci](https://github.com/rangerscience/initialize_with/actions/workflows/ci.yml/badge.svg)
+
 Utility gem to ease Ruby code development by replacing the common boiler plate:
 
 ```ruby
