@@ -6,16 +6,6 @@ module InitializeWith
   end
 
   def initialize(...)
-    _initialize_with(...)
-  end
-
-  def parent_initialize_with(...)
-    self.class.superclass._validate_initialization_parameters!(...)
-    self.class.superclass._apply_initialization_parameters(self, ...)
-    self.class.superclass.instance_variable_get(:@_initialize_with_blocks)&.each { |blk| self.instance_exec(&blk) }
-  end
-
-  def _initialize_with(...)
     self.class._validate_initialization_parameters!(...)
     self.class._apply_initialization_parameters(self, ...)
     self.class.instance_variable_get(:@_initialize_with_blocks)&.each { |blk| self.instance_exec(&blk) }

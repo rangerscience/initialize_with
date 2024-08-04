@@ -3,37 +3,82 @@
 Utility gem to ease Ruby code development by replacing the common boiler plate:
 
 ```ruby
-def initialize param, keyword:
-  @param = param
-  @keyword = keyword
+class MyClass
+  def initialize param
+    @param = param
+  end
 end
 ```
 
 with
 
-```
+```ruby
 class MyClass
   include InitializeWith
-
   initialize_with :param
-  initialize_with_kwargs :keyword
+end
+```
 
 ## Installation
 
-```ruby
+```gemfile
 gem 'initialize_with'
+```
+```ruby
+require "initialize_with"
 ```
 
 ## Usage
+The aim is function "as you expect", and otherwise, see the rspec tests for more involved examples.
 
+If you were writing:
+```ruby
+class MyClass
+  def initialize foo, bar: 42
+    @foo = foo
+    @bar = bar
+    call_some_function
+  end
+end
 ```
 
+you can now write:
+```ruby
+class MyClass
+  include InitializeWith
+  initialize_with :foo, bar: 42 do
+    call_some_function
+  end
+end
+```
+
+Additionally, it's safe to invoke multiple times:
+```ruby
+class MyClass
+  include InitializeWith
+  initialize_with :foo
+  initialize_with bar: 42
+end
+```
+
+### Inheritance
+Simple inheritance works just fine:
+
+```ruby
+class Parent
+  include InitializeWith
+end
+
+class MyClass
+  initialize_with :foo, bar: 42
+end
+```
+
+But note that there isn't a way to replicate something like `super` - you'll have to do things by hand (see the test suite for more).
 
 ## Development
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+`bundle install` to get started, `rspec` for tests, `bin/console` for an IRB that's already `reqiured` the library.
 
 ## Contributing
 
