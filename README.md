@@ -1,5 +1,6 @@
 # InitializeWith
 
+[![Gem Version](https://badge.fury.io/rb/initialize-with.svg)](https://badge.fury.io/rb/initialize-with)
 ![ci](https://github.com/rangerscience/initialize_with/actions/workflows/ci.yml/badge.svg)
 [![code-climate](https://codeclimate.com/github/rangerscience/initialize_with.svg)](https://codeclimate.com/github/rangerscience/initialize_with)
 
@@ -25,11 +26,13 @@ end
 ## Installation
 
 ```gemfile
-gem 'initialize_with'
+gem 'initialize-with'
 ```
 ```ruby
 require "initialize_with"
 ```
+
+Note that there is a very stale gem `initialize_with` (underscore instead of dash) and I am not creative with this naming!
 
 ## Usage
 The aim is function "as you expect", and otherwise, see the rspec tests for more involved examples.

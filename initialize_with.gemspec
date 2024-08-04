@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require "initialize_with/version"
 
 Gem::Specification.new do |spec|
-  spec.name          = "initialize_with"
+  spec.name          = "initialize-with"
   spec.version       = InitializeWith::VERSION
   spec.authors       = [ "Nicholas Barone" ]
   spec.email         = [ "nicktbarone@gmail.com" ]
