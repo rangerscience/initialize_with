@@ -49,5 +49,9 @@ RSpec.describe 'InitializeWith::initialize' do
         include InitializeWith
       end
     end
+
+    it "does not raise an error" do
+      expect { klass.new }.not_to raise_error
+    end
   end
 end
