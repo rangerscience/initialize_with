@@ -1,6 +1,6 @@
-require "initialize_with/version"
-
 module InitializeWith
+  VERSION = "0.1.0"
+
   def self.included(base)
     base.extend ClassMethods
   end
