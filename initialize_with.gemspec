@@ -1,7 +1,7 @@
 
 lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require "initialize_with/version"
+require "initialize_with"
 
 Gem::Specification.new do |spec|
   spec.name          = "initialize-with"
